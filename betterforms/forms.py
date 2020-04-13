@@ -4,9 +4,13 @@ from django import forms
 from django.forms.utils import ErrorDict
 from django.core.exceptions import NON_FIELD_ERRORS
 from django.template.loader import render_to_string
-from django.utils import six
-from django.utils.encoding import python_2_unicode_compatible
+import six
 
+try:
+    from django.utils.encoding import python_2_unicode_compatible
+except ImportError:
+    def python_2_unicode_compatible(klass):
+        return klass
 
 class CSSClassMixin(object):
     """
